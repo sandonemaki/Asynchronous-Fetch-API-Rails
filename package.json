@@ -1,0 +1,22 @@
+{
+  "name": "asynchronous-fetch-api-rails",
+  "private": true,
+  "dependencies": {
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^6.0.0-beta",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^8.0.1",
+    "turbolinks": "^5.2.0",
+    "vite-plugin-full-reload": "^1.0.5",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "vite": "^4.0.0",
+    "vite-plugin-ruby": "^3.1.2",
+    "webpack-dev-server": "^3"
+  }
+}
