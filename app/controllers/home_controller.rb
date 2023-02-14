@@ -3,5 +3,8 @@ class HomeController < ApplicationController
   end
 
   def get_post
+    pp "--------"
+    pp params
+    pp "--------"
   end
 end

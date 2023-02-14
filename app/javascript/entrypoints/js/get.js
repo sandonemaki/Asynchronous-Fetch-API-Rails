@@ -13,12 +13,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   const buttonPost = document.getElementById('button_post_js');
   buttonPost.addEventListener('click', function(){
+    const post_data = {
+      key1: "data1",
+      key2: "data2",
+      key3: 3
+    };
+
     fetch('/get_post', {
       method: 'POST',
       credentials: 'same-origin',
       headers: {
+        'Content-Type': 'application/json',
         'X-CSRF-Token': getCsrfToken()
       },
+      body: JSON.stringify(post_data),
     })
       .then(function(response){
         const response_message = response.status + ':' + response.statusText
