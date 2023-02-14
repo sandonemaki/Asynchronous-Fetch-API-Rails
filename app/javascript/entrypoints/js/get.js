@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
   });
 
+
   const buttonPost = document.getElementById('button_post_js');
   buttonPost.addEventListener('click', function(){
     fetch('/get_post', {
@@ -23,5 +24,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
   });
 });
-
-
