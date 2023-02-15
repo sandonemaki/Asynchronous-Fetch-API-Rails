@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         key3: 3
       };
 
+      const inputText = document.getElementById('input_text_js')
+      if (inputText) {
+        post_data[inputText.name] = inputText.value;
+      }
+
       fetch('/get_post', {
         method: 'POST',
         credentials: 'same-origin',
