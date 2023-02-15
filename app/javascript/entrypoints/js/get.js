@@ -15,16 +15,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const buttonPost = document.getElementById('button_post_js');
   if (buttonPost) {
     buttonPost.addEventListener('click', function(){
+      // 固定値
       const post_data = {
         key1: "data1",
         key2: "data2",
         key3: 3
       };
 
+      // idで取得
       const inputText = document.getElementById('input_text_js')
       if (inputText) {
         post_data[inputText.name] = inputText.value;
       }
+
+      // attributeで取得
+      const keywordNodes = document.querySelectorAll("input[group='keyword']");
+      if (keywordNodes) {
+        const keyword_data = [];
+        for (let keywordNode of keywordNodes) {
+          const keyword = {keyword: keywordNode.value};
+          keyword_data.push(keyword);
+        }
+        post_data['keywords'] = keyword_data;
+
+      }
+
+
 
       fetch('/get_post', {
         method: 'POST',
