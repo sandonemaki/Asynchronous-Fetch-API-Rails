@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+
+
   const buttonGet = document.getElementById('button_get_js');
   if (buttonGet) {
     buttonGet.addEventListener('click', function(){
@@ -12,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
     });
   }
+
+
   const buttonPost = document.getElementById('button_post_js');
   if (buttonPost) {
     buttonPost.addEventListener('click', function(){
@@ -39,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         post_data['keywords'] = keyword_data;
 
       }
-
 
 
       fetch('/get_post', {
