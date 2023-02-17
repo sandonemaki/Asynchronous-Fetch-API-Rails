@@ -8,11 +8,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let response = await fetch('/get_post', {
           method: 'GET'
         });
+
+        if (!response.ok) {
+          console.error('response.ok:', response.ok);
+          console.error('response.status:', response.status);
+          console.error('response.statusText:', response.statusText);
+          throw new Error(response.statusText);
+        }
+        // 成功時
         const response_message = response.status + ':' + response.statusText
         console.log(response_message);
         window.alert('response_message=' + response_message);
       } catch (error) {
-        console.error(error);
+        console.error('エラーが発生しました', error);
       }
     });
   }
@@ -49,20 +57,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
       try {
-        response = await fetch('/get_post', {
+        const response = await fetch('/get_post', {
           method: 'POST',
           credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
             'X-CSRF-Token': getCsrfToken()
           },
-          body: JSON.stringify(post_data),
+          body: JSON.stringify(postData),
         })
+        if (!response.ok) {
+          console.error('response.ok:', response.ok);
+          console.error('response.status:', response.status);
+          console.error('response.statusText:', response.statusText);
+          throw new Error(response.statusText);
+        }
+        // 成功時
         const response_message = response.status + ':' + response.statusText
         console.log(response_message);
         window.alert('response_message=' + response_message);
       } catch (error) {
-        console.log(error);
+        console.error('エラーが発生しました', error);
       }
     });
   }
