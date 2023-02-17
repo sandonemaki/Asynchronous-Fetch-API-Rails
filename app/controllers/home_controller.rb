@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     if request.get?
       pp params
     elsif request.post?
-      permit_parameters = params.permit(:key1, :key2, :key3, :name_input_text, keywords: [:keyword]).to_h
+      permit_parameters = params.require(:home).permit(:key1, :key2, :key3, :name_input_text, keywords: [:keyword]).to_h
       pp permit_parameters[:key1]
       pp permit_parameters[:key2]
       pp permit_parameters[:key3]
