@@ -3,24 +3,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   const buttonGet = document.getElementById('button_get_js');
   if (buttonGet) {
-    buttonGet.addEventListener('click', function(){
-      fetch('/get_post', {
-        method: 'GET'
-      })
-        .then(function(response){
-          const response_message = response.status + ':' + response.statusText
-          console.log(response_message);
-          window.alert('response_message=' + response_message);
+    buttonGet.addEventListener('click', async () => {
+      try {
+        let response = await fetch('/get_post', {
+          method: 'GET'
         });
+        const response_message = response.status + ':' + response.statusText
+        console.log(response_message);
+        window.alert('response_message=' + response_message);
+      } catch (error) {
+        console.error(error);
+      }
     });
   }
 
 
+
   const buttonPost = document.getElementById('button_post_js');
   if (buttonPost) {
-    buttonPost.addEventListener('click', function(){
+    buttonPost.addEventListener('click', async () => {
       // 固定値
-      const post_data = {
+      const postData = {
         key1: "data1",
         key2: "data2",
         key3: 3
@@ -29,38 +32,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // idで取得
       const inputText = document.getElementById('input_text_js')
       if (inputText) {
-        post_data[inputText.name] = inputText.value;
+        postData[inputText.name] = inputText.value;
       }
 
       // attributeで取得
       const keywordNodes = document.querySelectorAll("input[group='keyword']");
       if (keywordNodes) {
-        const keyword_data = [];
+        const keywordData = [];
         for (let keywordNode of keywordNodes) {
           const keyword = {keyword: keywordNode.value};
-          keyword_data.push(keyword);
+          keywordData.push(keyword);
         }
-        post_data['keywords'] = keyword_data;
+        postData['keywords'] = keywordData;
 
       }
 
 
-      fetch('/get_post', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': getCsrfToken()
-        },
-        body: JSON.stringify(post_data),
-      })
-        .then(function(response){
-          const response_message = response.status + ':' + response.statusText
-          console.log(response_message);
-          window.alert('response_message=' + response_message);
-        });
+      try {
+        response = await fetch('/get_post', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': getCsrfToken()
+          },
+          body: JSON.stringify(post_data),
+        })
+        const response_message = response.status + ':' + response.statusText
+        console.log(response_message);
+        window.alert('response_message=' + response_message);
+      } catch (error) {
+        console.log(error);
+      }
     });
   }
+
   const getCsrfToken = () => {
     const metas = document.getElementsByTagName('meta');
     console.log(metas);
