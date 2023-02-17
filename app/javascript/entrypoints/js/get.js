@@ -66,11 +66,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
           },
           body: JSON.stringify(postData),
         })
+        if (!response.ok) {
+          console.error('response.ok:', response.ok);
+          console.error('response.status:', response.status);
+          console.error('response.statusText:', response.statusText);
+          throw new Error(response.statusText);
+        }
+        // 成功時
         const response_message = response.status + ':' + response.statusText
         console.log(response_message);
         window.alert('response_message=' + response_message);
       } catch (error) {
-        console.log(error);
+        console.error('エラーが発生しました', error);
       }
     });
   }
